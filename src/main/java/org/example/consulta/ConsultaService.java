@@ -5,7 +5,6 @@ import org.example.paciente.Paciente;
 import org.example.paciente.PacienteDto;
 import org.example.paciente.PacienteService;
 
-import java.security.spec.ECParameterSpec;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +13,7 @@ public class ConsultaService {
 
     Scanner scanner = new Scanner(System.in);
 
-    List<Consultas> consultasList = new ArrayList<>();
+    static List<Consultas> consultasList = new ArrayList<>();
 
     MedicoService medicoService = new MedicoService();
     PacienteService pacienteService = new PacienteService();
@@ -37,30 +36,29 @@ public class ConsultaService {
         return null;
     }
 
-    private PacienteDto buscarPaciente( String nomePaciente) {
+    private PacienteDto buscarPaciente(String nomePaciente) {
         List<PacienteDto> pacienteList = pacienteService.retornaListaPaciente();
         boolean encontrado = false;
 
         if (pacienteList.isEmpty()) {
-           throw new ExceptionConsultas("Lista de paciente esta vazia.");
+            throw new ExceptionConsultas("Lista de paciente esta vazia.");
         }
 
-        for (PacienteDto pacienteDto:pacienteList){
-           if(pacienteDto.nome().equalsIgnoreCase(nomePaciente)){
-               encontrado = true;
-               return pacienteDto;
-           }
-       }
-       if(!encontrado) {
-           System.out.println("Paciente não foi encontrado!!!");
-      }
+        for (PacienteDto pacienteDto : pacienteList) {
+            if (pacienteDto.nome().equalsIgnoreCase(nomePaciente)) {
+                encontrado = true;
+                return pacienteDto;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("Paciente não foi encontrado!!!");
+        }
         return null;
     }
 
 
     public void agendar() {
-//        pacienteService.cadastrarPaciente();
-//        medicoService.cadastrarMedico();
+        pacienteService.cadastrarPaciente();
 
         medicoService.retornaMedicos().stream().forEach(System.out::println);
         System.out.println("escolha algum medico pelo nome  para agendar consulta: ");
@@ -72,7 +70,6 @@ public class ConsultaService {
 //                m.dataConsulta(), m.horarioDisponivel(), m.horarioDescanso());
 
 
-        //pacienteService.retornaListaPaciente().stream().forEach(System.out::println);
         System.out.println("Informe o nome do paciente: ");
         String nomePaciente = scanner.nextLine();
 
@@ -86,21 +83,42 @@ public class ConsultaService {
 
     }
 
-    public void buscarEspecialidade() {
-        System.out.println("Informe a especialidade:");
-        Especialidade especialidade = Especialidade.valueOf(scanner.nextLine().toUpperCase());
-        List<MedicoDto> medicosEspecialidade = new ArrayList<>();
-
+    private MedicoDto buscarEspecialidade(Especialidade especialidade) {
         var medico = medicoService.retornaMedicos();
-
         for (MedicoDto med : medico) {
             if (med.especialidade().equals(especialidade)) {
-                medicosEspecialidade.add(med);
+                return med;
             }
         }
-
-        System.out.println("Listando médicos pela especialidade");
-        medicosEspecialidade.stream().forEach(System.out::println);
+        return null;
     }
 
+    public void cadastrarPelaEspecialidade() {
+
+        pacienteService.cadastrarPaciente();
+        System.out.println("Escolha a especialidade:");
+        Especialidade especialidade = Especialidade.valueOf(scanner.nextLine().toUpperCase());
+
+        var medicoEspecialidade = buscarEspecialidade(especialidade);
+//        MedicoDto medicoDto=null;
+//
+//        for (MedicoDto medicoesp : buscarEspecialidade(especialidade)) {
+//            if (medicoesp.especialidade().equals(especialidade)) {
+//                medicoDto = medicoesp;
+//            }
+//        }
+
+        System.out.println("Informe o nome do paciente novamente:");
+        String nome = scanner.nextLine().trim();
+        var p = buscarPaciente(nome);
+        Paciente paciente = new Paciente(p);
+        var medico = new Medico(medicoEspecialidade);
+
+
+        Consultas consultas = new Consultas(medico.getDataConsulta(), medico, paciente);
+        System.out.println("Agendando pela especialidade!");
+        consultasList.add(consultas);
+        consultasList.stream().forEach(System.out::println);
+
+    }
 }

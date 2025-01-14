@@ -11,19 +11,22 @@ import java.util.stream.Collectors;
 
 public class PacienteService {
     Scanner scanner = new Scanner(System.in);
-    List<Paciente> pacienteList = new ArrayList<>();
+  static  List<Paciente> pacienteList = new ArrayList<>();
 
     public void cadastrarPaciente() {
         System.out.println("Informe o  nome do paciente:");
         String nome = new Scanner(System.in).nextLine().trim();
         System.out.println("Informe o sexo:");
         String sexo = new Scanner(System.in).nextLine().trim();
+        System.out.println("Informe o data e horario da consulta:");
+        LocalDateTime horario = LocalDateTime.parse(scanner.nextLine().trim());
         System.out.println("Informe a sua idade:");
         int idade = scanner.nextInt();
-        System.out.println("Informe o data e horario da consulta:");
-        LocalDateTime horarioConsulta = LocalDateTime.parse(scanner.nextLine());
-        PacienteDto pacienteDto = new PacienteDto(nome, sexo, idade, horarioConsulta);
+
+
+        PacienteDto pacienteDto = new PacienteDto(nome, sexo, idade, horario);
         pacienteList.add(new Paciente(pacienteDto));
+
     }
 
     public List<PacienteDto> retornaListaPaciente() {

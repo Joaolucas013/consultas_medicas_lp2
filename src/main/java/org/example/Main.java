@@ -20,7 +20,8 @@ public class Main {
 
     public static void main(String[] args) {
         boolean continuar = true;
-       exibir();
+        medicoService.iniciarMedicos();
+        exibir();
 
         while (continuar) {
             menu();
@@ -62,13 +63,9 @@ public class Main {
     }
 
     private static void consultarPorEspecialidade() {
-        consultaService.buscarEspecialidade();
+        consultaService.cadastrarPelaEspecialidade();
     }
 
-    private static void exibirAgenda() {
-      var medicos =  medicoService.retornaMedicos();
-      medicos.stream().forEach(System.out::println);
-    }
 
     private static void menu() {
         System.out.println(""" 
@@ -87,8 +84,9 @@ public class Main {
 
     private static void exibir(){
         System.out.println("*** Listando médicos ***");
-        medicoService.iniciarMedicos();
-        exibirAgenda();
+        var medicos =  medicoService.retornaMedicos();
+        medicos.stream().forEach(System.out::println);
+
     }
 
 }

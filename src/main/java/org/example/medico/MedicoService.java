@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class MedicoService {
     Scanner scanner = new Scanner(System.in);
 
-    List<Medico> medicoList = new ArrayList<>();
+   static  List<Medico> medicoList = new ArrayList<>();
 
 
         public void cadastrarMedico() {
@@ -37,7 +37,7 @@ public class MedicoService {
 
         }
 
-        public void iniciarMedicos(){
+        public static void iniciarMedicos(){
 
                 MedicoDto med1 = new MedicoDto("João Lucas", "1234", Especialidade.CARDIOLOGIA,
                         LocalDateTime.parse("2025-01-16T09:00"),
@@ -96,6 +96,9 @@ public class MedicoService {
                         m.getHorarioDisponivel(), m.getHorarioDescanso())).collect(Collectors.toList());
         return medicos;
     }
+
+
+
 
 }
 

@@ -1,4 +1,4 @@
-package org.example.medico;
+package org.example.consulta;
 
 public class ExceptionConsultas extends RuntimeException {
 
