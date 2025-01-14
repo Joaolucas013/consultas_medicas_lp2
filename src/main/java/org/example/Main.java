@@ -22,20 +22,48 @@ public class Main {
         boolean continuar = true;
 
         while (continuar) {
-            for (int i = 0; i <1 ; i++) {
-                agendarConsulta();
-            }
-            System.out.println("Deseja continuar? (S/N)");
-            String opcao = new Scanner(System.in).nextLine().toUpperCase();
-            if (opcao.contains("S")) {
-                continuar = true;
-            } else {
-                System.out.println("Saindo...");
-                continuar = false;
+            consultaService.agendar();
+            menu();
+            int opcao = new Scanner(System.in).nextInt();
+            switch (opcao) {
+                case 1:
+                    exibirAgenda();
+                    break;
+                case 2:
+                    agendarConsulta();
+                    break;
+                case 3:
+                    bloquearHorario();
+                    break;
+                case 4:
+                    consultarPorEspecialidade();
+                    break;
+                case 5:
+                    System.out.println("Saindo...");
+                    continuar= false;
+                    break;
             }
         }
+    }
 
+    private static void bloquearHorario() {
+    }
 
+    private static void consultarPorEspecialidade() {
+        consultaService.buscarEspecialidade();
+    }
+
+    private static void exibirAgenda() {
+    }
+
+    private static void menu() {
+        System.out.println(""" 
+                1 - exibir agenda de todos os médicos
+                2 - marcar consulta
+                3 - bloquear horario
+                4 - consultar por especialidade
+                5 - sair
+                """);
     }
 
 

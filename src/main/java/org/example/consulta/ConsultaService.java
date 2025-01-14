@@ -1,13 +1,11 @@
 package org.example.consulta;
 
-import org.example.medico.Medico;
-import org.example.medico.MedicoDto;
-import org.example.medico.ExceptionConsultas;
-import org.example.medico.MedicoService;
+import org.example.medico.*;
 import org.example.paciente.Paciente;
 import org.example.paciente.PacienteDto;
 import org.example.paciente.PacienteService;
 
+import java.security.spec.ECParameterSpec;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -86,4 +84,22 @@ public class ConsultaService {
         consultasList.stream().forEach(System.out::println);
 
     }
+
+    public void buscarEspecialidade() {
+        System.out.println("Informe a especialidade:");
+        Especialidade especialidade = Especialidade.valueOf(scanner.nextLine().toUpperCase());
+        List<MedicoDto> medicosEspecialidade = new ArrayList<>();
+
+        var medico = medicoService.retornaMedicos();
+
+        for (MedicoDto med : medico) {
+            if (med.especialidade().equals(especialidade)) {
+                medicosEspecialidade.add(med);
+            }
+        }
+
+        System.out.println("Listando médicos pela especialidade");
+        medicosEspecialidade.stream().forEach(System.out::println);
+    }
+
 }
