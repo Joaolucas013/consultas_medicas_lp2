@@ -1,5 +1,8 @@
 package org.example.medico;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -13,18 +16,23 @@ public class MedicoService {
         public void cadastrarMedico() {
             System.out.println("Informe o nome do medico:");
             String nome = scanner.nextLine().trim();
+
             System.out.println("Informe o CRM");
             String crm = scanner.nextLine().trim();
+
             System.out.println("Informe a sua especialidade:");
             Especialidade especialidade = Especialidade.valueOf(scanner.nextLine().toUpperCase());
+
             System.out.println("Informe a data da consulta");
             LocalDateTime dataConsulta = LocalDateTime.parse(scanner.nextLine().trim());
+
             System.out.println("Informe algum horario disponível no dia:");
             LocalDateTime horarioDisponivel = LocalDateTime.parse(scanner.nextLine().trim());
+
             System.out.println("Informe o horario de descanso");
             LocalDateTime horarioDescanso = LocalDateTime.parse(scanner.nextLine());
-            MedicoDto medicoDto = new MedicoDto(nome, crm, especialidade, dataConsulta, horarioDisponivel, horarioDescanso);
 
+            MedicoDto medicoDto = new MedicoDto(nome, crm, especialidade, dataConsulta, horarioDisponivel, horarioDescanso);
             medicoList.add(new Medico(medicoDto));
 
         }

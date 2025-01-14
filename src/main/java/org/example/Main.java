@@ -12,38 +12,36 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static List<Paciente> pacientes = new ArrayList<>();
-    private static List<Medico> medicos = new ArrayList<>();
+
+
     private static PacienteService pacienteService = new PacienteService();
     private static MedicoService medicoService = new MedicoService();
     private static ConsultaService consultaService = new ConsultaService();
 
     public static void main(String[] args) {
         boolean continuar = true;
+       exibir();
 
         while (continuar) {
             menu();
             int opcao = new Scanner(System.in).nextInt();
             switch (opcao) {
                 case 1:
-                    exibirAgenda();
-                    break;
-                case 2:
                     agendarConsulta();
                     break;
-                case 3:
+                case 2:
                     bloquearHorario();
                     break;
-                case 4:
+                case 3:
                     consultarPorEspecialidade();
                     break;
-                case 5:
+                case 4:
                     cadastrarMedico();
                     break;
-                case 6:
+                case 5:
                     cadastrarPaciente();
                     break;
-                case 7:
+                case 6:
                     System.out.println("Saindo...");
                     continuar= false;
                     break;
@@ -74,17 +72,23 @@ public class Main {
 
     private static void menu() {
         System.out.println(""" 
-                1 - exibir agenda de todos os médicos
-                2 - marcar consulta
-                3 - bloquear horario
-                4 - consultar por especialidade
-                5 - sair
+             
+                1 - Marcar consulta
+                2 - Bloquear horario
+                3 - Consultar por especialidade
+                4 - Sair
                 """);
     }
 
 
     private static void agendarConsulta() {
         consultaService.agendar();
+    }
+
+    private static void exibir(){
+        System.out.println("*** Listando médicos ***");
+        medicoService.iniciarMedicos();
+        exibirAgenda();
     }
 
 }

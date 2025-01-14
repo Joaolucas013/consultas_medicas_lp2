@@ -72,7 +72,6 @@ public class ConsultaService {
 //                m.dataConsulta(), m.horarioDisponivel(), m.horarioDescanso());
 
 
-
         //pacienteService.retornaListaPaciente().stream().forEach(System.out::println);
         System.out.println("Informe o nome do paciente: ");
         String nomePaciente = scanner.nextLine();
