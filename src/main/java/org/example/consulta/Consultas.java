@@ -43,10 +43,10 @@ public class Consultas {
 
     @Override
     public String toString() {
-        return "Consultas agendadas{ "+
-                " horario da consulta: " + dataConsulta +
-                ", medico agendado:" + medico +
-                ", paciente agendado:" + paciente +
+        return "Consultas{" +
+                "horario consulta=" + dataConsulta +
+                ", medico=" + medico +
+                ", paciente=" + paciente +
                 '}';
     }
 }

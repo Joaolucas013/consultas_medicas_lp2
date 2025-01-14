@@ -19,8 +19,8 @@ public class PacienteService {
         String sexo = new Scanner(System.in).nextLine().trim();
         System.out.println("Informe a sua idade:");
         int idade = scanner.nextInt();
-
-        pacienteList.add(new Paciente(nome, sexo, idade));
+        PacienteDto pacienteDto = new PacienteDto(nome, sexo, idade);
+        pacienteList.add(new Paciente(pacienteDto));
     }
 
     public List<PacienteDto> retornaListaPaciente() {

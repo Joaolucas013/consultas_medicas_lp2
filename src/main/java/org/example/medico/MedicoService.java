@@ -23,8 +23,9 @@ public class MedicoService {
         LocalDateTime horarioDisponivel = LocalDateTime.parse(scanner.nextLine().trim());
         System.out.println("Informe o horario de descanso");
         LocalDateTime horarioDescanso = LocalDateTime.parse(scanner.nextLine());
+        MedicoDto medicoDto = new MedicoDto(nome, crm, especialidade, dataConsulta, horarioDisponivel, horarioDescanso);
 
-        medicoList.add(new Medico(nome, crm, especialidade, dataConsulta, horarioDisponivel, horarioDescanso));
+        medicoList.add(new Medico(medicoDto));
 
     }
 

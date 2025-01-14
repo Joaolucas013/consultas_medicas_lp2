@@ -41,6 +41,7 @@ public class ConsultaService {
 
     private PacienteDto buscarPaciente( String nomePaciente) {
         List<PacienteDto> pacienteList = pacienteService.retornaListaPaciente();
+        boolean encontrado = false;
 
         if (pacienteList.isEmpty()) {
            throw new ExceptionConsultas("Lista de paciente esta vazia.");
@@ -48,10 +49,13 @@ public class ConsultaService {
 
         for (PacienteDto pacienteDto:pacienteList){
            if(pacienteDto.nome().equalsIgnoreCase(nomePaciente)){
+               encontrado = true;
                return pacienteDto;
            }
        }
-
+       if(!encontrado) {
+           System.out.println("Paciente não foi encontrado!!!");
+      }
         return null;
     }
 
@@ -64,18 +68,21 @@ public class ConsultaService {
         String nome = scanner.nextLine();
 
         MedicoDto m = procurarMedico(nome);
-        Medico medico = new Medico(m.nome(), m.crm(), m.especialidade(),
-                m.dataConsulta(), m.horarioDisponivel(), m.horarioDescanso());
+//        Medico medico = new Medico(m.nome(), m.crm(), m.especialidade(),
+//                m.dataConsulta(), m.horarioDisponivel(), m.horarioDescanso());
+        Medico medico = new Medico(m);
 
-        pacienteService.retornaListaPaciente().stream().forEach(System.out::println);
+
+        //pacienteService.retornaListaPaciente().stream().forEach(System.out::println);
         System.out.println("Informe o nome do paciente: ");
         String nomePaciente = scanner.nextLine();
 
         PacienteDto p = buscarPaciente(nomePaciente);
-        Paciente paciente = new Paciente(p.nome(), p.sexo(), p.idade());
+        Paciente paciente = new Paciente(p);
 
         Consultas consultas = new Consultas(medico.getDataConsulta(), medico, paciente);
         consultasList.add(consultas);
+        System.out.println("Consulta marcada com sucesso!!!");
         consultasList.stream().forEach(System.out::println);
 
     }

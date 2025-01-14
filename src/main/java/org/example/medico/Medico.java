@@ -20,14 +20,23 @@ public class Medico {
     private LocalDateTime horarioDescanso;
 
 
-    public Medico(String nome, String crm, Especialidade especialidade,
-                  LocalDateTime dataConsulta, LocalDateTime horarioDisponivel, LocalDateTime horarioDescanso) {
-        this.nome = nome;
-        this.crm = crm;
-        this.especialidade = especialidade;
-        this.dataConsulta = dataConsulta;
-        this.horarioDisponivel = horarioDisponivel;
-        this.horarioDescanso = horarioDescanso;
+//    public Medico(String nome, String crm, Especialidade especialidade,
+//                  LocalDateTime dataConsulta, LocalDateTime horarioDisponivel, LocalDateTime horarioDescanso) {
+//        this.nome = nome;
+//        this.crm = crm;
+//        this.especialidade = especialidade;
+//        this.dataConsulta = dataConsulta;
+//        this.horarioDisponivel = horarioDisponivel;
+//        this.horarioDescanso = horarioDescanso;
+//    }
+
+    public Medico(MedicoDto dados){
+        this.nome = dados.nome();
+        this.crm = dados.crm();
+        this.especialidade = dados.especialidade();
+        this.horarioDisponivel = dados.horarioDisponivel();
+        this.dataConsulta = dados.dataConsulta();
+        this.horarioDescanso = dados.horarioDescanso();
     }
 
 
