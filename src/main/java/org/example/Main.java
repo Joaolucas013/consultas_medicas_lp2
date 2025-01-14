@@ -20,9 +20,8 @@ public class Main {
 
     public static void main(String[] args) {
         boolean continuar = true;
-
+        consultaService.agendar();
         while (continuar) {
-            consultaService.agendar();
             menu();
             int opcao = new Scanner(System.in).nextInt();
             switch (opcao) {
