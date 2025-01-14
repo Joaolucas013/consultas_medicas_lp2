@@ -2,6 +2,7 @@ package org.example.paciente;
 
 import org.example.medico.Medico;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,13 +20,15 @@ public class PacienteService {
         String sexo = new Scanner(System.in).nextLine().trim();
         System.out.println("Informe a sua idade:");
         int idade = scanner.nextInt();
-        PacienteDto pacienteDto = new PacienteDto(nome, sexo, idade);
+        System.out.println("Informe o data e horario da consulta:");
+        LocalDateTime horarioConsulta = LocalDateTime.parse(scanner.nextLine());
+        PacienteDto pacienteDto = new PacienteDto(nome, sexo, idade, horarioConsulta);
         pacienteList.add(new Paciente(pacienteDto));
     }
 
     public List<PacienteDto> retornaListaPaciente() {
         List<PacienteDto> pacienteDtos = pacienteList
-                .stream().map(p -> new PacienteDto(p.getNome(), p.getSexo(), p.getIdade()))
+                .stream().map(p -> new PacienteDto(p.getNome(), p.getSexo(), p.getIdade(), p.getConsulta()))
                 .collect(Collectors.toList());
 
         return pacienteDtos;
