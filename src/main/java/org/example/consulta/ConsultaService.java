@@ -59,16 +59,18 @@ public class ConsultaService {
 
 
     public void agendar() {
-        pacienteService.cadastrarPaciente();
-        medicoService.cadastrarMedico();
+//        pacienteService.cadastrarPaciente();
+//        medicoService.cadastrarMedico();
+
         medicoService.retornaMedicos().stream().forEach(System.out::println);
-        System.out.println("Informe o nome de algum medico para agendar consulta: ");
+        System.out.println("escolha algum medico pelo nome  para agendar consulta: ");
         String nome = scanner.nextLine();
 
         MedicoDto m = procurarMedico(nome);
+        Medico medico = new Medico(m);
 //        Medico medico = new Medico(m.nome(), m.crm(), m.especialidade(),
 //                m.dataConsulta(), m.horarioDisponivel(), m.horarioDescanso());
-        Medico medico = new Medico(m);
+
 
 
         //pacienteService.retornaListaPaciente().stream().forEach(System.out::println);

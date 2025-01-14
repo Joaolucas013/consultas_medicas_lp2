@@ -38,11 +38,26 @@ public class Main {
                     consultarPorEspecialidade();
                     break;
                 case 5:
+                    cadastrarMedico();
+                    break;
+                case 6:
+                    cadastrarPaciente();
+                    break;
+                case 7:
                     System.out.println("Saindo...");
                     continuar= false;
                     break;
             }
         }
+    }
+
+    private static void cadastrarPaciente() {
+        pacienteService.cadastrarPaciente();
+    }
+
+    private static void cadastrarMedico() {
+        medicoService.cadastrarMedico();
+
     }
 
     private static void bloquearHorario() {
@@ -53,6 +68,8 @@ public class Main {
     }
 
     private static void exibirAgenda() {
+      var medicos =  medicoService.retornaMedicos();
+      medicos.stream().forEach(System.out::println);
     }
 
     private static void menu() {

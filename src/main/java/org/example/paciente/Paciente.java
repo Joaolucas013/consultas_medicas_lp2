@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-// caso o plugin não esteja habilitado, remova @Getter @Setter@AllArgsConstructor @NoArgsConstructor
+// caso o plugin não esteja habilitado, remova @Getter @Setter  e @NoArgsConstructor
 // e chame os metodos  getters e setters ou vá em settings ---> plugins ---> e instale o Lombok
 
 @Getter
@@ -16,16 +16,14 @@ public class Paciente {
     private String nome;
     private String sexo;
     private int idade;
+    private LocalDateTime consulta;
 
-//    public Paciente(String nome, String sexo, int idade) {
-//        this.nome = nome;
-//        this.sexo = sexo;
-//        this.idade = idade;
-//    }
+
     public Paciente(PacienteDto dados) {
         this.nome = dados.nome();
         this.sexo = dados.sexo();
         this.idade = dados.idade();
+        this.consulta = dados.consulta();
     }
 
 
@@ -35,6 +33,7 @@ public class Paciente {
                 "nome='" + nome + '\'' +
                 ", sexo='" + sexo + '\'' +
                 ", idade=" + idade +
+                ", consulta=" + consulta +
                 '}';
     }
 }
