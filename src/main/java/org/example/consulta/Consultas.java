@@ -1,0 +1,52 @@
+package org.example.consulta;
+
+import org.example.medico.Medico;
+import org.example.paciente.Paciente;
+
+import java.time.LocalDateTime;
+
+public class Consultas {
+
+    private LocalDateTime dataConsulta;
+    private Medico medico;
+    private Paciente paciente;
+
+    public Consultas(LocalDateTime horario, Medico medico, Paciente paciente) {
+        this.dataConsulta = medico.getDataConsulta();
+        this.medico = medico;
+        this.paciente = paciente;
+    }
+
+    public LocalDateTime getDataConsulta() {
+        return dataConsulta;
+    }
+
+    public void setDataConsulta(LocalDateTime dataConsulta) {
+        this.dataConsulta = dataConsulta;
+    }
+
+    public Medico getMedico() {
+        return medico;
+    }
+
+    public void setMedico(Medico medico) {
+        this.medico = medico;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    @Override
+    public String toString() {
+        return "Consultas agendadas{ "+
+                " horario da consulta: " + dataConsulta +
+                ", medico agendado:" + medico +
+                ", paciente agendado:" + paciente +
+                '}';
+    }
+}
