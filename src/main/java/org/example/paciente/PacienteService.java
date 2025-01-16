@@ -1,6 +1,7 @@
 package org.example.paciente;
 
 import org.example.medico.Medico;
+import org.example.validacao.ValidacaoHorario;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 public class PacienteService {
     Scanner scanner = new Scanner(System.in);
   static  List<Paciente> pacienteList = new ArrayList<>();
+    static List<ValidacaoHorario> validar = new ArrayList<>();
 
     public Paciente cadastrarPaciente() {
         System.out.println("Informe o  nome do paciente:");
@@ -27,6 +29,7 @@ public class PacienteService {
         var pacienteDto = new PacienteDto(nome, sexo, idade, horario);
         Paciente paciente = new Paciente(pacienteDto);
         pacienteList.add(paciente);
+        validar.forEach(v->v.validar(paciente));
         return paciente;
     }
 

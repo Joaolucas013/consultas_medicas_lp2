@@ -5,5 +5,5 @@ import org.example.paciente.Paciente;
 
 public interface ValidacaoHorario {
 
-    void validar(Medico medico, Paciente paciente);
+    void validar( Paciente paciente);
 }

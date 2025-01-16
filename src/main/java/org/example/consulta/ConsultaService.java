@@ -60,7 +60,8 @@ public class ConsultaService {
 
     public void agendar() {
         // retorna o paciente cadastrado e uso ele futuramente
-      var paciente =  pacienteService.cadastrarPaciente();
+        var paciente = pacienteService.cadastrarPaciente();
+        validar.forEach(v -> v.validar(paciente));
 
         medicoService.retornaMedicos().stream().forEach(System.out::println);
         System.out.println("escolha algum medico   para agendar consulta: ");
@@ -70,12 +71,16 @@ public class ConsultaService {
         Medico medico = new Medico(m);
         medico.setDataConsulta(paciente.getConsulta());
 
-        validar.forEach(v->v.validar(medico, paciente));
 
         Consultas consultas = new Consultas(medico.getDataConsulta(), medico, paciente);
+        validarConsultas(consultas);
         consultasList.add(consultas);
         System.out.println("Consulta marcada com sucesso!!!");
         consultasList.stream().forEach(System.out::println);
+
+    }
+
+    private void validarConsultas(Consultas consultas) {
 
     }
 
