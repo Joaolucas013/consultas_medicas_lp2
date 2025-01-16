@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Positive;
 import java.time.LocalDateTime;
 
 public record PacienteDto(
+
         @NotBlank
         String nome,
         @NotBlank

@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 public record  MedicoDto(
+
         @NotBlank
         String nome,
         @Pattern(regexp = "\\d{4,6}") // crm deve ter de 4 a 6 dígitos
@@ -16,13 +17,13 @@ public record  MedicoDto(
         Especialidade especialidade,
 
         @NotNull
-        @Future(message = "Erro! Não é possível agendar  consulta para datas passadas")
+        @Future
         LocalDateTime dataConsulta,
         @NotNull
-        @Future(message = "Erro! Não é possível agendar  consulta para datas passadas")
+        @Future
         LocalDateTime horarioDisponivel,
         @NotNull
-        @Future(message = "Erro! Não é possível agendar  consulta para datas passadas")
+        @Future
         LocalDateTime horarioDescanso) {
 
    public MedicoDto(Medico medico){

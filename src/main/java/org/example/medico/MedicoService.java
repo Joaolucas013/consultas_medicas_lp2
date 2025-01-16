@@ -13,7 +13,7 @@ public class MedicoService {
    static  List<Medico> medicoList = new ArrayList<>();
 
 
-        public void cadastrarMedico() {
+        public Medico cadastrarMedico() {
             System.out.println("Informe o nome do medico:");
             String nome = scanner.nextLine().trim();
 
@@ -32,8 +32,12 @@ public class MedicoService {
             System.out.println("Informe o horario de descanso");
             LocalDateTime horarioDescanso = LocalDateTime.parse(scanner.nextLine());
 
-            MedicoDto medicoDto = new MedicoDto(nome, crm, especialidade, dataConsulta, horarioDisponivel, horarioDescanso);
+            var medicoDto = new MedicoDto(nome, crm, especialidade, dataConsulta, horarioDisponivel, horarioDescanso);
+            var medico = new Medico(medicoDto);
             medicoList.add(new Medico(medicoDto));
+            medicoList.stream().forEach(System.out::println);
+
+            return medico;
 
         }
 
@@ -41,7 +45,7 @@ public class MedicoService {
 
                 MedicoDto med1 = new MedicoDto("João Lucas", "1234", Especialidade.CARDIOLOGIA,
                         LocalDateTime.parse("2025-01-16T09:00"),
-                        LocalDateTime.parse("2025-01-16T13:00"),
+                        LocalDateTime.parse("2025-01-16T16:40"),
                         LocalDateTime.parse("2025-01-16T11:00")
                 );
                 MedicoDto med2 = new MedicoDto(

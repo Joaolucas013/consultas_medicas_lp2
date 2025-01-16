@@ -13,7 +13,7 @@ public class PacienteService {
     Scanner scanner = new Scanner(System.in);
   static  List<Paciente> pacienteList = new ArrayList<>();
 
-    public PacienteDto cadastrarPaciente() {
+    public Paciente cadastrarPaciente() {
         System.out.println("Informe o  nome do paciente:");
         String nome = new Scanner(System.in).nextLine().trim();
         System.out.println("Informe o sexo:");
@@ -24,9 +24,10 @@ public class PacienteService {
         int idade = scanner.nextInt();
 
 
-        PacienteDto pacienteDto = new PacienteDto(nome, sexo, idade, horario);
-        pacienteList.add(new Paciente(pacienteDto));
-        return pacienteDto;
+        var pacienteDto = new PacienteDto(nome, sexo, idade, horario);
+        Paciente paciente = new Paciente(pacienteDto);
+        pacienteList.add(paciente);
+        return paciente;
     }
 
     public List<PacienteDto> retornaListaPaciente() {

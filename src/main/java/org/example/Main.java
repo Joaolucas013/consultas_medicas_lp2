@@ -1,13 +1,9 @@
 package org.example;
 
 import org.example.consulta.ConsultaService;
-import org.example.medico.Medico;
-import org.example.paciente.Paciente;
 import org.example.medico.MedicoService;
 import org.example.paciente.PacienteService;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -20,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
         boolean continuar = true;
-        MedicoService.iniciarMedicos();
+       MedicoService.iniciarMedicos();
         exibir();
 
         while (continuar) {
@@ -43,7 +39,7 @@ public class Main {
                     cadastrarPaciente();
                     break;
                 case 6:
-                    System.out.println("Saindo...");
+                    System.out.println("Bye...");
                     continuar= false;
                     break;
             }
@@ -51,11 +47,13 @@ public class Main {
     }
 
     private static void cadastrarPaciente() {
-        pacienteService.cadastrarPaciente();
+       var paciente =  pacienteService.cadastrarPaciente();
+        System.out.println("Paciente " + paciente.getNome() + " cadastrado com sucesso!");
     }
 
     private static void cadastrarMedico() {
-        medicoService.cadastrarMedico();
+      var medico =   medicoService.cadastrarMedico();
+        System.out.println("Médico " + medico.getNome() + " cadastrado com sucesso!!!");
 
     }
 
@@ -73,7 +71,9 @@ public class Main {
                 1 - Marcar consulta
                 2 - Bloquear horario
                 3 - Consultar por especialidade
-                4 - Sair
+                4 - cadastrar médico
+                5 - cadastrar paciente
+                6 - Sair
                 """);
     }
 
@@ -84,8 +84,8 @@ public class Main {
 
     private static void exibir(){
         System.out.println("*** Listando médicos ***");
-        var medicos =  medicoService.retornaMedicos();
-        medicos.stream().forEach(System.out::println);
+         medicoService.retornaMedicos().stream().forEach(System.out::println);
+
 
     }
 

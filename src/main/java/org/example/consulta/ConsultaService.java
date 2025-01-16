@@ -4,6 +4,7 @@ import org.example.medico.*;
 import org.example.paciente.Paciente;
 import org.example.paciente.PacienteDto;
 import org.example.paciente.PacienteService;
+import org.example.validacao.ValidacaoHorario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +15,13 @@ public class ConsultaService {
     Scanner scanner = new Scanner(System.in);
 
     static List<Consultas> consultasList = new ArrayList<>();
+    static List<ValidacaoHorario> validar = new ArrayList<>();
 
     MedicoService medicoService = new MedicoService();
     PacienteService pacienteService = new PacienteService();
 
 
     public MedicoDto procurarMedico(String nome) {
-        // retorna uma lista de MedicosDto
         List<MedicoDto> medicos = medicoService.retornaMedicos();
 
         if (medicos.isEmpty()) {
@@ -58,23 +59,18 @@ public class ConsultaService {
 
 
     public void agendar() {
-       var pacienteDto =  pacienteService.cadastrarPaciente();
+        // retorna o paciente cadastrado e uso ele futuramente
+      var paciente =  pacienteService.cadastrarPaciente();
 
         medicoService.retornaMedicos().stream().forEach(System.out::println);
-        System.out.println("escolha algum medico pelo nome  para agendar consulta: ");
+        System.out.println("escolha algum medico   para agendar consulta: ");
         String nome = scanner.nextLine();
 
         MedicoDto m = procurarMedico(nome);
         Medico medico = new Medico(m);
-//        Medico medico = new Medico(m.nome(), m.crm(), m.especialidade(),
-//                m.dataConsulta(), m.horarioDisponivel(), m.horarioDescanso());
+        medico.setDataConsulta(paciente.getConsulta());
 
-//
-//        System.out.println("Informe o nome do paciente novamente: ");
-//        String nomePaciente = scanner.nextLine();
-
-        PacienteDto p = buscarPaciente(pacienteDto.nome());
-        Paciente paciente = new Paciente(p);
+        validar.forEach(v->v.validar(medico, paciente));
 
         Consultas consultas = new Consultas(medico.getDataConsulta(), medico, paciente);
         consultasList.add(consultas);
@@ -95,45 +91,21 @@ public class ConsultaService {
 
     public void cadastrarPelaEspecialidade() {
 
+        var paciente = pacienteService.cadastrarPaciente();
+        medicoService.retornaMedicos().stream().forEach(System.out::println);
 
         System.out.println("Escolha a especialidade:");
         Especialidade especialidade = Especialidade.valueOf(scanner.nextLine().toUpperCase());
 
-        buscarEspecialidadeList(especialidade);
         var medicoEspecialidade = buscarEspecialidade(especialidade);
-        buscarEspecialidade(especialidade);
-
-        pacienteService.cadastrarPaciente();
-        System.out.println("Informe o nome do paciente novamente:");
-        String nome = scanner.nextLine().trim();
-
-        var p = buscarPaciente(nome);
-        Paciente paciente = new Paciente(p);
         var medico = new Medico(medicoEspecialidade);
+        medico.setDataConsulta(paciente.getConsulta());
 
 
         Consultas consultas = new Consultas(medico.getDataConsulta(), medico, paciente);
-        System.out.println("Agendando pela especialidade!");
+        System.out.println("Agendado com sucesso!");
         consultasList.add(consultas);
         consultasList.stream().forEach(System.out::println);
 
     }
-
-    private void buscarEspecialidadeList(Especialidade especialidade) {
-        var medico = medicoService.retornaMedicos();
-        List<MedicoDto> medicoDtos = new ArrayList<>();
-        for (MedicoDto med : medico) {
-            if (med.especialidade().equals(especialidade)) {
-                medicoDtos.add(med);
-            }
-        }
-        if (medicoDtos.isEmpty()) {
-            throw new ExceptionConsultas("Lista de especialidades está vazia!!!");
-        }
-        System.out.println("Listando médicos com a especialidade" + especialidade + " escolhida: ");
-        System.out.println("Escolha a data de acordo com a disponibilidade do seu medico");
-        medicoDtos.stream().forEach(System.out::println);
-    }
-
-
 }

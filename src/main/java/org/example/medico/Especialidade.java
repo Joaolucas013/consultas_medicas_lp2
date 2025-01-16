@@ -1,6 +1,7 @@
 package org.example.medico;
 
 public enum Especialidade {
+
     ORTOPEDIA,
     CARDIOLOGIA,
     GINECOLOGIA,
