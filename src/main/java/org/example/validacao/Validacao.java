@@ -9,7 +9,7 @@ import java.time.DayOfWeek;
 public class Validacao implements ValidacaoHorario{
 
     @Override
-    public void validar(Paciente paciente) {
+    public void validar(Medico medico, Paciente paciente) {
         var dadosPaciente = paciente.getConsulta();
         var domingo = dadosPaciente.getDayOfWeek().equals(DayOfWeek.SUNDAY);
         var antesDaAbertura = dadosPaciente.getHour() < 7;
@@ -22,3 +22,7 @@ public class Validacao implements ValidacaoHorario{
 }
 
 
+// var dadosConsulta = dados;
+//        var domingo = dados.data().getDayOfWeek().equals(DayOfWeek.SUNDAY);
+//        var AntesDaAberturaClinica = dadosConsulta.data().getHour() < 7;
+//        var DepoisDoFechamentoClinica = dadosConsulta.data().getHour() >18;
