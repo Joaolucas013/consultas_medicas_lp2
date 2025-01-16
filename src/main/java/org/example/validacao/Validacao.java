@@ -21,8 +21,3 @@ public class Validacao implements ValidacaoHorario{
     }
 }
 
-
-// var dadosConsulta = dados;
-//        var domingo = dados.data().getDayOfWeek().equals(DayOfWeek.SUNDAY);
-//        var AntesDaAberturaClinica = dadosConsulta.data().getHour() < 7;
-//        var DepoisDoFechamentoClinica = dadosConsulta.data().getHour() >18;
