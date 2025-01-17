@@ -99,7 +99,8 @@ public class ConsultaService {
 
         var medicoEspecialidade = buscarEspecialidade(especialidade);
         var medico = new Medico(medicoEspecialidade);
-        medico.setDataConsulta(paciente.getConsulta());
+
+        validarConsulta.validarHorario(paciente, medico);
 
 
         Consultas consultas = new Consultas(medico.getDataConsulta(), medico, paciente);
