@@ -1,10 +1,9 @@
 package org.example.medico;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class MedicoService {
@@ -54,7 +53,7 @@ public class MedicoService {
                         Especialidade.ORTOPEDIA,
                         LocalDateTime.parse("2025-01-18T11:00"),
                         LocalDateTime.parse("2025-01-18T15:00"),
-                        LocalDateTime.parse("2025-01-18T13:00")
+                        LocalDateTime.parse("2025-01-18T13:00:00")
                 );
 
         MedicoDto med3 = new MedicoDto(

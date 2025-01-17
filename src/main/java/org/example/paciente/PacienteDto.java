@@ -24,4 +24,5 @@ public record PacienteDto(
     public PacienteDto(Paciente p){
         this(p.getNome(), p.getSexo(), p.getIdade(), p.getConsulta());
     }
+
 }
