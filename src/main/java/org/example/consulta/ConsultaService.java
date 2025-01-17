@@ -68,6 +68,7 @@ public class ConsultaService {
 
         MedicoDto m = procurarMedico(nome);
         Medico medico = new Medico(m);
+        medico.setDataConsulta(paciente.getConsulta());
 
         validarConsulta.validarHorario(paciente, medico);
         Consultas consultas = new Consultas(paciente.getConsulta(), medico, paciente);
@@ -99,11 +100,12 @@ public class ConsultaService {
 
         var medicoEspecialidade = buscarEspecialidade(especialidade);
         var medico = new Medico(medicoEspecialidade);
-
+        medico.setDataConsulta(paciente.getConsulta());
         validarConsulta.validarHorario(paciente, medico);
 
 
-        Consultas consultas = new Consultas(medico.getDataConsulta(), medico, paciente);
+
+        Consultas consultas = new Consultas(paciente.getConsulta(), medico, paciente);
         System.out.println("Agendado com sucesso!");
         consultasList.add(consultas);
         consultasList.stream().forEach(System.out::println);

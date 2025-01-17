@@ -18,6 +18,7 @@ public class MedicoService {
 
             System.out.println("Informe o CRM");
             String crm = scanner.nextLine().trim();
+            String crmChecado =  validarCrm(crm);
 
             System.out.println("Informe a sua especialidade:");
             Especialidade especialidade = Especialidade.valueOf(scanner.nextLine().toUpperCase());
@@ -25,13 +26,13 @@ public class MedicoService {
             System.out.println("Informe a data da consulta");
             LocalDateTime dataConsulta = LocalDateTime.parse(scanner.nextLine().trim());
 
-            System.out.println("Informe algum horario disponível no dia:");
+            System.out.println("Informe algum outro horario de disponibilidade para atendimento:");
             LocalDateTime horarioDisponivel = LocalDateTime.parse(scanner.nextLine().trim());
 
             System.out.println("Informe o horario de descanso");
             LocalDateTime horarioDescanso = LocalDateTime.parse(scanner.nextLine());
 
-            var medicoDto = new MedicoDto(nome, crm, especialidade, dataConsulta, horarioDisponivel, horarioDescanso);
+            var medicoDto = new MedicoDto(nome, crmChecado, especialidade, dataConsulta, horarioDisponivel, horarioDescanso);
             var medico = new Medico(medicoDto);
             medicoList.add(new Medico(medicoDto));
             medicoList.stream().forEach(System.out::println);
@@ -40,7 +41,30 @@ public class MedicoService {
 
         }
 
-        public static void iniciarMedicos(){
+    private String validarCrm(String crm) {
+        List<MedicoDto> list = retornaMedicos();
+        String novo = "";
+
+        for (int i = 0; i < list.size(); i++) {
+            MedicoDto m = list.get(i);
+
+            if (m.crm().equals(crm) || crm.length() < 4) {
+                System.out.println("CRM inválido! informe novamente corretamente");
+                String validado = novoCrm(crm);
+                novo =  validarCrm(validado);
+                return novo;
+            }
+        }
+        return novo+=crm;
+    }
+
+    private String novoCrm(String crm) {
+        System.out.println("Informe o novo crm");
+        String novoCrm = scanner.nextLine().trim();
+        return novoCrm;
+    }
+
+    public static void iniciarMedicos(){
 
                 MedicoDto med1 = new MedicoDto("João Lucas", "1234", Especialidade.CARDIOLOGIA,
                         LocalDateTime.parse("2025-01-16T09:00"),

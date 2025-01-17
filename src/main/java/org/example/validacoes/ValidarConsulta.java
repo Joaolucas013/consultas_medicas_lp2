@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class ValidarConsulta {
 
+Scanner scanner = new Scanner(System.in);
     public void validarHorario(Paciente paciente, Medico medico) {
         var horarioPaciente = paciente.getConsulta();
         var horarioDescansoMedico = medico.getHorarioDescanso();
@@ -20,14 +21,15 @@ public class ValidarConsulta {
 
 
     private void novoHorario(Paciente paciente, Medico medico) {
-        System.out.println("Outro horario disponível para consulta com o" +
-                "  médico " + medico.getNome() + " é " + medico.getHorarioDisponivel());
+        System.out.println("Outro horario disponível para consulta com "
+                + medico.getNome() + " é " + medico.getHorarioDisponivel());
 
         System.out.println("Deseja agendar para esse horario? (S/N)");
         String resposta = new Scanner(System.in).nextLine().trim().toUpperCase();
 
         if (resposta.contains("S")) {
             medico.setDataConsulta(medico.getHorarioDisponivel());
+            paciente.setConsulta(medico.getHorarioDisponivel());
             System.out.println("horario da consulta atualizado com sucesso para: " + medico.getDataConsulta());
         } else {
             System.out.println("Informe o horário que deseja agendar:");

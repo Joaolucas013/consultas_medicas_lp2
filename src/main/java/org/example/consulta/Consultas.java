@@ -12,7 +12,7 @@ public class Consultas {
     private Paciente paciente;
 
     public Consultas(LocalDateTime horario, Medico medico, Paciente paciente) {
-        this.dataConsulta = medico.getDataConsulta();
+        this.dataConsulta = paciente.getConsulta();
         this.medico = medico;
         this.paciente = paciente;
     }

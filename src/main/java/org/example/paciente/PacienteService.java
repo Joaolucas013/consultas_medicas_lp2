@@ -1,5 +1,7 @@
 package org.example.paciente;
 
+import org.example.medico.Medico;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,7 @@ public class PacienteService {
 
         for (int i = 0; i <listPaciente.size(); i++) {
             PacienteDto p = listPaciente.get(i);
-            if(p.consulta().getDayOfWeek().equals(paciente.getConsulta().getDayOfWeek())){
+            if(p.consulta().getDayOfWeek().equals(paciente.getConsulta().getDayOfWeek()) ){
                 System.out.println("Erro! já existe uma consulta agendada para o dia: " + paciente.getConsulta());
                 System.out.println("Escolha outra data:");
                 System.out.println("Informe o data e horario da consulta:");
