@@ -5,8 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-// caso o plugin não esteja habilitado, remova @Getter @Setter  e @NoArgsConstructor
-// e chame os metodos  getters e setters ou vá em settings ---> plugins ---> e instale o Lombok
+
 
 @Getter
 @Setter
