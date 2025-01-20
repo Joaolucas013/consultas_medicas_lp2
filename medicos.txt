@@ -1,0 +1,1 @@
+Medico: nome: 'teste', crm: '1821', especialidade: UROLOGIA, dataConsulta: 2025-01-10T19:00, horarioDisponivel: 2025-01-10T19:00, horarioDescanso: 2025-01-10T19:00, bloqueado: null

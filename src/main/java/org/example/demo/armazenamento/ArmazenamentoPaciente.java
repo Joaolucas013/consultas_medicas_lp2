@@ -14,9 +14,12 @@ public class ArmazenamentoPaciente {
 
     public static Scanner scanner = new Scanner(System.in);
     public static Set<Paciente> lista = new HashSet<>();
+   static PacienteService pacienteService = new PacienteService();
 
-    public void salvarPaciente(Paciente paciente) {
-        lista.add(paciente);
+    public void salvarPaciente() {
+        //lista = pacienteService.retornaListaPaciente().stream().collect(Collectors.toSet());
+        lista = pacienteService.retornaListaPaciente().stream().map(p->new Paciente(p.getNome(),
+                p.getSexo(), p.getIdade(), p.getConsulta())).collect(Collectors.toSet());
         salvarPacienteArquivo("pacientes.txt");
     }
 

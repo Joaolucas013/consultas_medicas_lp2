@@ -12,10 +12,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MedicoService {
+
     Scanner scanner = new Scanner(System.in);
-
-    static  List<Medico> medicoList = new ArrayList<>();
-
+     static  List<Medico> medicoList = new ArrayList<>();
     static ArmazenamentoMedico armazenamentoMedico = new ArmazenamentoMedico();
 
 
@@ -25,7 +24,7 @@ public class MedicoService {
 
         System.out.println("Informe o CRM");
         String crm = scanner.nextLine().trim();
-        String crmChecado =  validarCrm(crm);
+        String crmChecado = validarCrm(crm);
 
         System.out.println("Informe a sua especialidade:");
         Especialidade especialidade = Especialidade.valueOf(scanner.nextLine().toUpperCase());
@@ -40,14 +39,15 @@ public class MedicoService {
         LocalDateTime horarioDescanso = LocalDateTime.parse(scanner.nextLine());
 
 
-         var medico = new Medico(nome, crmChecado,especialidade, dataConsulta, horarioDisponivel, horarioDescanso);
+        var medico = new Medico(nome, crmChecado, especialidade, dataConsulta, horarioDisponivel, horarioDescanso);
+
         medicoList.add(medico);
-        armazenamentoMedico.salvarMedicos();
+        armazenamentoMedico.salvarMedico(medico);
         System.out.println("Médico cadastrado com sucesso!");
         medicoList.stream().forEach(System.out::println);
         return medico;
 
-   }
+    }
 
     private String validarCrm(String crm) {
         List<Medico> list = retornaMedicos();
@@ -107,8 +107,8 @@ public class MedicoService {
 
         Medico med5 = new Medico(
                 "Gabriel Barbosa",
-                "5678",
-                Especialidade.DERMATOLOGIA,
+                "5675",
+                Especialidade.ENDOCRINOLOGIA,
                 LocalDateTime.parse("2025-01-17T09:00"),
                 LocalDateTime.parse("2025-01-17T13:00"),
                 LocalDateTime.parse("2025-01-17T11:00")

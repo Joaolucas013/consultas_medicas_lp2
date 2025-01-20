@@ -17,8 +17,6 @@ public class ConsultaService {
 
     static Scanner scanner = new Scanner(System.in);
     public ArmazenamentoConsultas armazenamentoConsultas = new ArmazenamentoConsultas();
-
-
     static List<Consultas> consultasList = new ArrayList<>();
     static MedicoService medicoService = new MedicoService();
     static PacienteService pacienteService = new PacienteService();
@@ -40,7 +38,6 @@ public class ConsultaService {
         armazenamentoConsultas.salvarConsultas(consultas);
         System.out.println("Consulta marcada com sucesso!!!");
         consultasList.stream().forEach(System.out::println);
-
 
     }
 
@@ -68,11 +65,13 @@ public class ConsultaService {
 
         medico.setDataConsulta(paciente.getConsulta());
         validarConsulta.validarHorario(paciente, medico);
+        validarConsulta.verificacao(paciente, medico);
 
 
         Consultas consultas = new Consultas(paciente.getConsulta(), medico, paciente);
         System.out.println("Agendado com sucesso!");
         consultasList.add(consultas);
+        armazenamentoConsultas.salvarConsultas(consultas);
         consultasList.stream().forEach(System.out::println);
     }
 
@@ -89,10 +88,8 @@ public class ConsultaService {
         System.out.println("Informe o horário que deseja bloquear (exemplo:(2019-01-16T19:00))");
         LocalDateTime horario = LocalDateTime.parse(scanner.nextLine().trim());
         medico.setBloqueado(horario);
-        medicoService.retornaMedicos().stream().forEach(System.out::println);
-
-            System.out.println("Horário bloqueado com sucesso!");
-            System.out.println("Nome: " + medico.getNome() + ", Horário Bloqueado: " + medico.getBloqueado());
+        System.out.println("Horário bloqueado com sucesso!");
+        System.out.println("Nome: " + medico.getNome() + ", Horário Bloqueado: " + medico.getBloqueado());
 
     }
 

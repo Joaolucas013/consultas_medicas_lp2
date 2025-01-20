@@ -86,14 +86,14 @@ public class Medico {
 
     @Override
     public String toString() {
-        return "Medico{" +
-                "nome='" + nome + '\'' +
-                ", crm='" + crm + '\'' +
-                ", especialidade=" + especialidade +
-                ", dataConsulta=" + dataConsulta +
-                ", horarioDisponivel=" + horarioDisponivel +
-                ", horarioDescanso=" + horarioDescanso +
-                '}';
+        return "Medico: " +
+                "nome: '" + nome + '\'' +
+                ", crm: '" + crm + '\'' +
+                ", especialidade: " + especialidade +
+                ", dataConsulta: " + dataConsulta +
+                ", horarioDisponivel: " + horarioDisponivel +
+                ", horarioDescanso: " + horarioDescanso +
+                ", bloqueado: " + bloqueado;
     }
 
     @Override

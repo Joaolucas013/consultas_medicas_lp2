@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static PacienteService pacienteService = new PacienteService();
+     static PacienteService pacienteService = new PacienteService();
     private static MedicoService medicoService = new MedicoService();
     private static ConsultaService consultaService = new ConsultaService();
 

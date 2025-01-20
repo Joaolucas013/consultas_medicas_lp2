@@ -40,6 +40,7 @@ public class ValidarConsulta {
             LocalDateTime horario = LocalDateTime.parse(scanner.nextLine().trim());
             paciente.setConsulta(horario);
             medico.setDataConsulta(horario);
+            medico.setHorarioDisponivel(medico.getHorarioDisponivel().plusDays(1));
             System.out.println("horario da consulta atualizado com sucesso para: " + medico.getDataConsulta());
         }
     }
@@ -55,12 +56,15 @@ public class ValidarConsulta {
             if (resposta.contains("S")) {
                 medico.setDataConsulta(medico.getHorarioDisponivel());
                 paciente.setConsulta(medico.getHorarioDisponivel());
+                medico.setHorarioDisponivel(medico.getHorarioDisponivel().plusDays(1));
+                System.out.println(medico.getHorarioDisponivel());
                 System.out.println("horario da consulta atualizado com sucesso para: " + medico.getDataConsulta());
             } else {
                 System.out.println("Informe o horário que deseja agendar:");
                 LocalDateTime horario = LocalDateTime.parse(scanner.nextLine().trim());
                 paciente.setConsulta(horario);
                 medico.setDataConsulta(horario);
+                medico.setHorarioDisponivel(medico.getHorarioDisponivel().plusDays(1));
                 System.out.println("horario da consulta atualizado com sucesso para: " + medico.getDataConsulta());
             }
         }
