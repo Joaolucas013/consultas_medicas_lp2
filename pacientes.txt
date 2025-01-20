@@ -1,0 +1,2 @@
+Paciente{nome='neymarr', sexo='masculino', idade=23, consulta=2025-01-19T07:00}
+Paciente{nome='MESSIIII', sexo='masculino', idade=29, consulta=2025-01-19T07:00}
