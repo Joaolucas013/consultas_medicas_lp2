@@ -1,1 +1,5 @@
-Medico: nome: 'teste', crm: '1821', especialidade: UROLOGIA, dataConsulta: 2025-01-10T19:00, horarioDisponivel: 2025-01-10T19:00, horarioDescanso: 2025-01-10T19:00, bloqueado: null
+Medico: nome: 'Gabriel Barbosa', crm: '5675', especialidade: ENDOCRINOLOGIA, dataConsulta: 2025-01-17T09:00, horarioDisponivel: 2025-01-17T13:00, horarioDescanso: 2025-01-17T11:00, bloqueado: null
+Medico: nome: 'Láiza Kevelly', crm: '5678', especialidade: DERMATOLOGIA, dataConsulta: 2025-01-16T09:00, horarioDisponivel: 2025-01-16T13:00, horarioDescanso: 2025-01-16T11:00, bloqueado: null
+Medico: nome: 'Luiz Gabriel', crm: '1122', especialidade: ORTOPEDIA, dataConsulta: 2025-01-18T11:00, horarioDisponivel: 2025-01-18T15:00, horarioDescanso: 2025-01-18T13:00, bloqueado: null
+Medico: nome: 'Joao', crm: '1234', especialidade: CARDIOLOGIA, dataConsulta: 2025-01-16T09:00, horarioDisponivel: 2025-01-16T16:40, horarioDescanso: 2025-01-16T11:00, bloqueado: null
+Medico: nome: 'Gabriel Silvestre', crm: '3344', especialidade: NEUROLOGIA, dataConsulta: 2025-01-19T07:00, horarioDisponivel: 2025-01-19T11:00, horarioDescanso: 2025-01-19T09:00, bloqueado: null

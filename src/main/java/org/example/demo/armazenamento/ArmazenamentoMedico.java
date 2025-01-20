@@ -25,7 +25,7 @@ public class ArmazenamentoMedico {
         listMedicosCadastrado = medicoService.retornaMedicos().stream()
                 .map(e -> new Medico(e.getNome(), e.getCrm(), e.getEspecialidade(), e.getDataConsulta(), e.getHorarioDisponivel(), e.getHorarioDescanso()))
                 .collect(Collectors.toSet());
-        salvarMedicoArquivo("medico.txt");
+        salvarMedicoArquivo("medicos.txt");
     }
 
     private   void salvarMedicoArquivo(String arquivo) {
@@ -43,7 +43,7 @@ public class ArmazenamentoMedico {
 
     public void salvarMedico(Medico medico) {
      list.add(medico);
-     adicionarMedico("medicos.txt", medico);
+     adicionarMedico("medico.txt", medico);
     }
 
     private void adicionarMedico(String file, Medico medico) {
