@@ -1,9 +1,10 @@
 package org.example.demo.service;
 
-import org.example.demo.exception.ExceptionConsultas;
-import org.example.demo.armazenamento.armazenamentomedico.ArmazenamentoMedico;
+
+import org.example.demo.armazenamento.ArmazenamentoMedico;
 import org.example.demo.medico.Especialidade;
 import org.example.demo.medico.Medico;
+import org.example.demo.exception.ExceptionConsultas;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,7 +15,9 @@ public class MedicoService {
     Scanner scanner = new Scanner(System.in);
 
     static  List<Medico> medicoList = new ArrayList<>();
+
     static ArmazenamentoMedico armazenamentoMedico = new ArmazenamentoMedico();
+
 
     public Medico cadastrarMedico() {
         System.out.println("Informe o nome do medico:");
@@ -39,11 +42,12 @@ public class MedicoService {
 
          var medico = new Medico(nome, crmChecado,especialidade, dataConsulta, horarioDisponivel, horarioDescanso);
         medicoList.add(medico);
-        armazenamentoMedico.salvarMedico(medico);
+        armazenamentoMedico.salvarMedicos();
         System.out.println("Médico cadastrado com sucesso!");
+        medicoList.stream().forEach(System.out::println);
         return medico;
 
-    }
+   }
 
     private String validarCrm(String crm) {
         List<Medico> list = retornaMedicos();
@@ -102,15 +106,13 @@ public class MedicoService {
         );
 
         Medico med5 = new Medico(
-                "bruno henrique",
-                "53078",
+                "Gabriel Barbosa",
+                "5678",
                 Especialidade.DERMATOLOGIA,
                 LocalDateTime.parse("2025-01-17T09:00"),
-                LocalDateTime.parse("2025-02-17T16:00"),
+                LocalDateTime.parse("2025-01-17T13:00"),
                 LocalDateTime.parse("2025-01-17T11:00")
         );
-
-
         medicoList.add(med1);
         medicoList.add(med2);
         medicoList.add(med3);
@@ -139,7 +141,6 @@ public class MedicoService {
         System.out.println("Medico não encontrado!!!");
         return null;
     }
-
 
 
 }

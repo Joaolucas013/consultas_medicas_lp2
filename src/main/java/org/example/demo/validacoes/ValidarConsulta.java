@@ -1,9 +1,9 @@
 package org.example.demo.validacoes;
 
-import org.example.demo.paciente.Paciente;
+
 import org.example.demo.medico.Medico;
 import org.example.demo.service.MedicoService;
-
+import org.example.demo.paciente.Paciente;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;

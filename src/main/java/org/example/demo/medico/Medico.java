@@ -1,8 +1,8 @@
 package org.example.demo.medico;
 
+
 import java.time.LocalDateTime;
 import java.util.Objects;
-
 
 public class Medico {
 
@@ -34,6 +34,7 @@ public class Medico {
         this.bloqueado = bloqueado;
         return bloqueado;
     }
+
 
     public String getNome() {
         return nome;
@@ -107,5 +108,4 @@ public class Medico {
     public int hashCode() {
         return Objects.hash(nome, crm);
     }
-
 }

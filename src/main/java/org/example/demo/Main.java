@@ -1,7 +1,6 @@
 package org.example.demo;
 
 
-
 import org.example.demo.service.ConsultaService;
 import org.example.demo.service.MedicoService;
 import org.example.demo.service.PacienteService;

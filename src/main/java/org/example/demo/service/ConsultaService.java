@@ -1,13 +1,12 @@
 package org.example.demo.service;
 
-import org.example.demo.armazenamento.armazenamentoconsultas.ArmazenamentoConsultas;
 import org.example.demo.consulta.Consultas;
-import org.example.demo.exception.ExceptionConsultas;
 import org.example.demo.medico.Especialidade;
 import org.example.demo.medico.Medico;
 import org.example.demo.paciente.Paciente;
+import org.example.demo.armazenamento.ArmazenamentoConsultas;
+import org.example.demo.exception.ExceptionConsultas;
 import org.example.demo.validacoes.ValidarConsulta;
-
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,6 +17,7 @@ public class ConsultaService {
 
     static Scanner scanner = new Scanner(System.in);
     public ArmazenamentoConsultas armazenamentoConsultas = new ArmazenamentoConsultas();
+
 
     static List<Consultas> consultasList = new ArrayList<>();
     static MedicoService medicoService = new MedicoService();
@@ -36,6 +36,7 @@ public class ConsultaService {
         validarConsulta.validarHorario(paciente, medico);
 
         Consultas consultas = new Consultas(medico.getDataConsulta(), medico, paciente);
+
         armazenamentoConsultas.salvarConsultas(consultas);
         System.out.println("Consulta marcada com sucesso!!!");
         consultasList.stream().forEach(System.out::println);
@@ -76,7 +77,7 @@ public class ConsultaService {
     }
 
 
-    public  void bloquearHorario() {
+    public static void bloquearHorario() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informe o nome do médico:");
         String nome = scanner.nextLine().trim();

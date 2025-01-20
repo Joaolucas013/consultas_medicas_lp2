@@ -1,21 +1,21 @@
 package org.example.demo.service;
 
 
-import org.example.demo.exception.ExceptionConsultas;
-import org.example.demo.armazenamento.armazenamento_paciente.Armazenamento;
+
 import org.example.demo.paciente.Paciente;
+import org.example.demo.armazenamento.ArmazenamentoPaciente;
+import org.example.demo.exception.ExceptionConsultas;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
-
 public class PacienteService {
+
     Scanner scanner = new Scanner(System.in);
-  static  List<Paciente> pacienteList = new ArrayList<>();
-   Armazenamento armazenamento = new Armazenamento();
+  static List<Paciente> pacienteList = new ArrayList<>();
+   ArmazenamentoPaciente armazenamentoPaciente = new ArmazenamentoPaciente();
 
     public Paciente cadastrarPaciente() {
         System.out.println("Informe o  nome do paciente:");
@@ -28,10 +28,12 @@ public class PacienteService {
         System.out.println("Informe o data e horario da consulta:");
         LocalDateTime horario = LocalDateTime.parse(scanner.nextLine().trim());
 
+
         Paciente paciente = new Paciente(nome,sexo, idade, horario);
         validar(paciente);
         pacienteList.add(paciente);
-        armazenamento.salvarPaciente();
+        armazenamentoPaciente.salvarPaciente(paciente);
+
         return paciente;
     }
 
@@ -74,6 +76,5 @@ public class PacienteService {
         }
         return null;
     }
-
 
 }

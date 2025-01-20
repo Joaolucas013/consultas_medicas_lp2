@@ -4,7 +4,6 @@ package org.example.demo.consulta;
 import org.example.demo.medico.Medico;
 import org.example.demo.paciente.Paciente;
 
-
 import java.time.LocalDateTime;
 
 public class Consultas {
@@ -51,6 +50,4 @@ public class Consultas {
                 ", paciente=" + paciente +
                 '}';
     }
-
-
 }

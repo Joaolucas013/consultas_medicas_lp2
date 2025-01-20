@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,6 +25,7 @@ public class Paciente {
         this.idade = idade;
         this.consulta = consulta;
     }
+
 
 
     public String getNome() {
@@ -59,6 +61,7 @@ public class Paciente {
     }
 
 
+
     @Override
     public String toString() {
         return "Paciente{" +
@@ -81,4 +84,5 @@ public class Paciente {
     public int hashCode() {
         return Objects.hash(nome, sexo, idade, consulta);
     }
+
 }
